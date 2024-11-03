@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background: linear-gradient(to bottom right, #0f172a, #1e1b4b);
+    color: #e2e8f0;
+  }
+}
+
+@layer components {
+  .fantasy-border {
+    @apply relative;
+  }
+  
+  .fantasy-border::before {
+    content: '';
+    @apply absolute -inset-[2px] bg-gradient-to-r from-purple-500/50 via-pink-500/50 to-purple-500/50 rounded-lg blur-sm;
+    animation: borderGlow 3s ease-in-out infinite alternate;
+  }
+
+  .fantasy-card {
+    @apply relative overflow-hidden rounded-lg bg-gradient-to-br from-gray-900/90 to-purple-900/90 backdrop-blur-sm;
+  }
+
+  .fantasy-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .magical-text {
+    @apply bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 bg-clip-text text-transparent;
+    animation: shimmer 2s ease-in-out infinite;
+  }
+}
+
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.magical-hover {
+  transition: all 0.3s ease;
+}
+
+.magical-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+}
